@@ -1,27 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
+import RootStack from './RootStack';
 
-import LoginScrean from '../page/Login';
-import HomeScrean from '../page/Home';
-import HorasScrean from '../page/ControleHoras';
-import AcessoScrean from '../page/ControleAcesso';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-
-const RootStack = props => {
-  const Drawer = createDrawerNavigator();
-  const isLoggedIn = useSelector(state => state.user.isAutenticated);
-
+function RootNavigation() {
   return (
-    <Drawer.Navigator initialRouteName="Login">
-      {isLoggedIn ? (
-        <>
-          <Drawer.Screen name="Home" component={HomeScrean} />
-          <Drawer.Screen name="Horas" component={HorasScrean} />
-          <Drawer.Screen name="Acesso" component={AcessoScrean} />
-        </>
-      ) : (
-        <Drawer.Screen name="Login" component={LoginScrean} />
-      )}
-    </Drawer.Navigator>
+    <NavigationContainer>
+      <RootStack />
+    </NavigationContainer>
   );
-};
-export default RootStack;
+}
+
+export default RootNavigation;

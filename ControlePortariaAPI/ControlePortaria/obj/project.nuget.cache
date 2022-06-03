@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3oBF0UEON8URJ0REi5AEVvTDqvT66vsCpjt2Bj230yJwxnRmpue91QNSq4+EYJgIo703mXR/JqS6fGJSH+oWOg==",
+  "dgSpecHash": "5XZ0EFUqxqPzF6D/usI9PtFh8Ewe94k0YNtm15vWNSNJRf35ElPFKwxOPovYRkDPM9LzitEO9HMCFQcOjiHnbA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\826\\source\\repos\\ControlePortaria\\ControlePortaria\\ControlePortaria.csproj",
+  "projectFilePath": "C:\\Users\\826\\Documents\\Projetos\\TCC\\ControlePortariaAPI\\ControlePortaria\\ControlePortaria.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\826\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\826\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
