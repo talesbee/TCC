@@ -12,9 +12,13 @@ namespace ControlePortaria.Context
         {
 
         }
-        public DbSet<Pessoa> Pessoas { get; set; }
-        public DbSet<Colaborador> Funcionarios { get; set; }
-        public DbSet<RegistroHora> RegistroHoras { get; set; }
+        public DbSet<ControlePortaria.Models.Pessoa> Pessoas { get; set; }
+        public DbSet<ControlePortaria.Models.Colaborador> Colaboradores { get; set; }
+        public DbSet<ControlePortaria.Models.RegistroHora> RegistroHoras { get; set; }
+        public DbSet<ControlePortaria.Models.Identificador> Identificador { get; set; }
+        public DbSet<ControlePortaria.Models.Permissao> Permissao { get; set; }
+        public DbSet<ControlePortaria.Models.AcessoMobile> AcessoMobile { get; set; }
+
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -28,12 +32,5 @@ namespace ControlePortaria.Context
         }
 
 
-        public DbSet<ControlePortaria.Models.Identificador> Identificador { get; set; }
-
-
-        public DbSet<ControlePortaria.Models.Permissao> Permissao { get; set; }
-
-
-        public DbSet<ControlePortaria.Models.AcessoMobile> AcessoMobile { get; set; }
     }
 }
