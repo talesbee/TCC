@@ -1,12 +1,10 @@
 #include <PN532_I2C.h>
-#include <Arduino.h>
 #include <PN532.h>
 #include <NfcAdapter.h>
-#include <Wire.h>
+
 #include <MicroLCD.h>
 #include <ArduinoJson.h>
 
-DynamicJsonDocument doc(1024);
 PN532_I2C pn532i2c(Wire);
 PN532 nfc(pn532i2c);
 LCD_SH1106 lcd;
@@ -30,7 +28,8 @@ const PROGMEM uint8_t logo[48 * 48 / 8] = {
   0x64, 0x6C, 0x4C, 0x48, 0xC8, 0xD8, 0xD8, 0xD8, 0xD8, 0xD8, 0xD8, 0xD8, 0x48, 0x4C, 0x6C, 0x64,
   0x26, 0x36, 0x33, 0x19, 0x09, 0x0C, 0x06, 0x03, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
-char str[100];
+bool aguardandoTag = true;
+
 void setup() {
   Serial.begin(9600);
   nfc.begin();
@@ -38,91 +37,101 @@ void setup() {
   uint32_t versiondata = nfc.getFirmwareVersion();
   do {
     lcd.clear();
-    lcd.setFontSize(FONT_SIZE_SMALL);
-    lcd.println("Sensor Nao Encontrado");
-    delay(1000);
+    lcd.setCursor(5, 1);
+    lcd.setFontSize(FONT_SIZE_MEDIUM);
+    lcd.println("Erro TAG");
+    versiondata = nfc.getFirmwareVersion();
+    hold(1000);
   } while (!versiondata);
-  // kontrola načtené verze NFC modulu
   if (!versiondata) {
-    Serial.println("Modulo não encontrado!");
-    // zastavení programu
-    while (1);
-  }
-  else {
-    lcd.clear();
-    lcd.setCursor(40, 1);
-    lcd.draw(logo, 48, 48);
-    delay(1000);
-  }
-
-  nfc.setPassiveActivationRetries(0xFF);
-
-  nfc.SAMConfig();
-
-  lcd.clear();
-  lcd.setCursor(1, 0);
-  lcd.setFontSize(FONT_SIZE_SMALL);
-  lcd.print("Carregando...");
-  while (!Serial.available()) {
-    delay(200);
-  }
-
-}
-
-void loop() {
-  boolean uspech;
-  uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };
-  uint8_t uidLength;
-
-  uspech = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, &uid[0], &uidLength);
-
-  if (uspech) {
-    String tag = "";
-    for (uint8_t i = 0; i < uidLength; i++) {
-      tag += String(uid[i], HEX);
-    }
-    delay(100);
     lcd.clear();
     lcd.setCursor(5, 1);
-    lcd.setFontSize(FONT_SIZE_SMALL);
-    lcd.println("Tag Lida");
-    Serial.print(tag);
-
-    while (!Serial.available()) {
-      String msg = Serial.readString();
-
-      deserializeJson(doc, msg);
-      JsonObject obj = doc.as<JsonObject>();
-      bool sucesso = obj["sucesso"];
-
-      if (sucesso) {
-        String nome = obj["data"]["nome"];
-        String dia = obj["data"]["dia"];
-        String hora = obj["data"]["hora"];
-        lcd.clear();
-        lcd.setCursor(5, 0);
-        lcd.setFontSize(FONT_SIZE_SMALL);
-        lcd.println(hora);
-        lcd.setFontSize(FONT_SIZE_SMALL);
-        lcd.println(dia);
-        lcd.setFontSize(FONT_SIZE_MEDIUM);
-        lcd.println("Ola: ");
-        lcd.setFontSize(FONT_SIZE_SMALL);
-        lcd.println(nome);
-        delay(2000);
-      } else {
-        lcd.clear();
-        lcd.setCursor(5, 1);
-        lcd.setFontSize(FONT_SIZE_SMALL);
-        lcd.println("Tag Nao Cadastrada");
-        delay(2000);
-      }
-    }
+    lcd.setFontSize(FONT_SIZE_MEDIUM);
+    lcd.println("Erro TAG");
+    while (1);
   }
-
-
+  nfc.setPassiveActivationRetries(0xFF);
+  nfc.SAMConfig();
   lcd.clear();
   lcd.setCursor(40, 1);
   lcd.draw(logo, 48, 48);
-  delay(100);
+}
+
+void loop() {
+  if (aguardandoTag) {
+    lcd.clear();
+    lcd.setCursor(40, 1);
+    lcd.draw(logo, 48, 48);
+    hold(100);
+    boolean uspech;
+    uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };
+    uint8_t uidLength;
+    uspech = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, &uid[0], &uidLength);
+    if (uspech) {
+      String tag = "";
+      for (uint8_t i = 0; i < uidLength; i++) {
+        tag += String(uid[i], HEX);
+      }
+      lcd.clear();
+      lcd.setCursor(5, 1);
+      lcd.setFontSize(FONT_SIZE_MEDIUM);
+      lcd.println("TAG lida: ");
+      lcd.setCursor(25, 5);
+      lcd.setFontSize(FONT_SIZE_MEDIUM);
+      lcd.println(tag);
+      hold(1000);
+      tag += "#";
+      Serial.println(tag);
+      aguardandoTag = false;
+    }
+  } else {
+    if (Serial.available()) {
+      aguardandoTag = true;
+      String retornoEsp = Serial.readStringUntil('#');
+      hold(100);
+      StaticJsonDocument<200> doc;
+      int str_len = retornoEsp.length() + 1;
+      char char_array[str_len];
+      retornoEsp.toCharArray(char_array, str_len);
+      DeserializationError error = deserializeJson(doc, char_array);
+      hold(100);
+      if (error) {
+        lcd.clear();
+        lcd.setCursor(5, 1);
+        lcd.setFontSize(FONT_SIZE_MEDIUM);
+        lcd.println("Erro API");
+        hold(2000);
+        return;
+      }
+      bool sucesso = doc["sucesso"];
+      String data = doc["data"];
+      if (sucesso) {
+        lcd.clear();
+        lcd.setCursor(5, 1);
+        lcd.setFontSize(FONT_SIZE_MEDIUM);
+        lcd.println("Ola: ");
+        lcd.setCursor(25, 5);
+        lcd.setFontSize(FONT_SIZE_MEDIUM);
+        lcd.println(data);
+        hold(2000);
+      } else {
+        lcd.clear();
+        lcd.setCursor(5, 2);
+        lcd.setFontSize(FONT_SIZE_SMALL);
+        lcd.println(data);
+        hold(2000);
+      }
+      while (Serial.available()) {
+        char c = Serial.read();
+        hold(1);
+      }
+    }
+  }
+}
+void hold(const unsigned int &ms) {
+  // Non blocking hold
+  unsigned long m = millis();
+  while (millis() - m < ms) {
+    yield();
+  }
 }

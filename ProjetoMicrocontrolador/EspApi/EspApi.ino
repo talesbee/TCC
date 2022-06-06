@@ -8,54 +8,43 @@
 
 ESP8266WiFiMulti WiFiMulti;
 WiFiClient client;
-PubSubClient espClient(client);
-
-const char* mqtt_server = "tbiot.hopto.org:80";
-const char* user = "automacao";
-const char* pass = "ZVh2$PBC";
-const int port = 8883;
 
 void setup() {
-
   Serial.begin(9600);
-
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP("TP-Link_D8D8", "S3m_S3nh@");
-
-  hold(5000);
-  espClient.setServer(mqtt_server, port);
-
-  espClient.publish("controlePortaria","Sistema on");
-  
-  Serial.println("On");
-  
+  hold(5000); 
 }
 
 void loop() {
   // wait for WiFi connection
 
   if (Serial.available()) {
-    String tag = Serial.readString();
-
+    String tag = Serial.readStringUntil('#');
+    hold(500);
     if ((WiFiMulti.run() == WL_CONNECTED)) {
-
       HTTPClient http;
-      String url = "https://192.168.15.159:80/api/Interacao/RegistroEntrada?id=a3764a1b";
-      espClient.publish("controlePortaria",tag.c_str());
-      if (http.begin(client, url.c_str())) {
+      String url = "https://tbiot.hopto.org:82/api/Interacao/";
+      String link = url+tag;
+      if (http.begin(client, link.c_str())) {
         int httpCode = http.GET();
         if (httpCode > 0) {
           if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {
             String payload = http.getString();
+            payload+="#";
             Serial.println(payload);
           }
         } else {
-          Serial.print("Erro API");
+          Serial.println("Erro API");
         }
         http.end();
       } else {
-        Serial.print("Sem internet");
+        Serial.println("Sem internet");
       }
+    }
+    while(Serial.available()){
+      char c = Serial.read();
+      hold(1);
     }
   }
 }
