@@ -19,12 +19,33 @@ namespace ControlePortaria.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ControlePortaria.Models.AcessoMobile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("PasswordMobile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserMobile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AcessoMobile");
+                });
+
             modelBuilder.Entity("ControlePortaria.Models.Colaborador", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IdAcessoMobile")
+                        .HasColumnType("int");
 
                     b.Property<int>("IdIdentificador")
                         .HasColumnType("int");
@@ -37,7 +58,7 @@ namespace ControlePortaria.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Funcionarios");
+                    b.ToTable("Colaboradores");
                 });
 
             modelBuilder.Entity("ControlePortaria.Models.Identificador", b =>

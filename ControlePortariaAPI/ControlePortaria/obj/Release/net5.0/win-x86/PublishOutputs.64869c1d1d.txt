@@ -1,0 +1,11 @@
+E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Release\net5.0\win-x86\PubTmp\Out\appsettings.Development.json
+E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Release\net5.0\win-x86\PubTmp\Out\appsettings.json
+E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Release\net5.0\win-x86\PubTmp\Out\ControlePortaria.pdb
+E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Release\net5.0\win-x86\PubTmp\Out\clrcompression.dll
+E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Release\net5.0\win-x86\PubTmp\Out\clrjit.dll
+E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Release\net5.0\win-x86\PubTmp\Out\coreclr.dll
+E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Release\net5.0\win-x86\PubTmp\Out\mscordaccore.dll
+E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Release\net5.0\win-x86\PubTmp\Out\aspnetcorev2_inprocess.dll
+E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Release\net5.0\win-x86\PubTmp\Out\Microsoft.Data.SqlClient.SNI.dll
+E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Release\net5.0\win-x86\PubTmp\Out\Microsoft.Data.SqlClient.SNI.pdb
+E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Release\net5.0\win-x86\PubTmp\Out\ControlePortaria.exe

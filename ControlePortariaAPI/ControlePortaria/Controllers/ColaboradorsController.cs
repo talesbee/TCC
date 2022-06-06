@@ -23,16 +23,16 @@ namespace ControlePortaria.Controllers
 
         // GET: api/Colaboradors
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Colaborador>>> GetFuncionarios()
+        public async Task<ActionResult<IEnumerable<Colaborador>>> GetColaboradores()
         {
-            return await _context.Funcionarios.ToListAsync();
+            return await _context.Colaboradores.ToListAsync();
         }
 
         // GET: api/Colaboradors/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Colaborador>> GetColaborador(int id)
         {
-            var colaborador = await _context.Funcionarios.FindAsync(id);
+            var colaborador = await _context.Colaboradores.FindAsync(id);
 
             if (colaborador == null)
             {
@@ -78,7 +78,7 @@ namespace ControlePortaria.Controllers
         [HttpPost]
         public async Task<ActionResult<Colaborador>> PostColaborador(Colaborador colaborador)
         {
-            _context.Funcionarios.Add(colaborador);
+            _context.Colaboradores.Add(colaborador);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetColaborador", new { id = colaborador.Id }, colaborador);
@@ -88,13 +88,13 @@ namespace ControlePortaria.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteColaborador(int id)
         {
-            var colaborador = await _context.Funcionarios.FindAsync(id);
+            var colaborador = await _context.Colaboradores.FindAsync(id);
             if (colaborador == null)
             {
                 return NotFound();
             }
 
-            _context.Funcionarios.Remove(colaborador);
+            _context.Colaboradores.Remove(colaborador);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +102,7 @@ namespace ControlePortaria.Controllers
 
         private bool ColaboradorExists(int id)
         {
-            return _context.Funcionarios.Any(e => e.Id == id);
+            return _context.Colaboradores.Any(e => e.Id == id);
         }
     }
 }
