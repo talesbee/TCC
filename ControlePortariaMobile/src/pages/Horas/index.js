@@ -4,6 +4,8 @@ import {Header} from '../../componets';
 
 export default function Horas({navigation}) {
 
+  
+
   return (
     <View>
       <Text>Horas</Text>

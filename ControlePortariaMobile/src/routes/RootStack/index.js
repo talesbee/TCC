@@ -31,16 +31,16 @@ const RootStack = props => {
       drawerContent={props => <DrawerMenu {...props} />}>
       {isLoggedIn ? (
         <>
-          <Drawer.Screen name="Home" component={HomeScrean} />
-          <Drawer.Screen name="Hora" component={HoraScrean} />
-          <Drawer.Screen name="Gestao" component={GestaoScrean} />
+          <Drawer.Screen name="Home" component={HomeScrean} options={{headerShown: false}}/>
+          <Drawer.Screen name="Hora" component={HoraScrean} options={{headerTitle: 'Controle de Horas'}}/>
+          <Drawer.Screen name="Gestao" component={GestaoScrean} options={{headerTitle: 'Gestão de Colaboradores'}}/>
         </>
       ) : (
         <>
           <Drawer.Screen
             name="Login"
             component={LoginScreen}
-            options={{headerShown: false}}
+            options={{headerShown: false, }}
           />
         </>
       )}
