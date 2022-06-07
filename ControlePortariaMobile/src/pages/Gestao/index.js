@@ -7,42 +7,49 @@ import {
   Modal,
   TextInput,
   Switch,
+  FlatList,
 } from 'react-native';
+import {ModalPermissao, ModalPermissaoEditar} from '../../componets';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useSelector} from 'react-redux';
-import {TextInputMask} from 'react-native-masked-text';
+import axios from 'axios';
+
+const valoresIniciais = {
+  Adm: false,
+  NomePerfil: '',
+  Entrada1: '',
+  Saida1: '',
+  Entrada2: '',
+  Saida2: '',
+};
 
 export default function Gestao({navigation}) {
   const user = useSelector(state => state.user);
-  const [modalPerfil, setModalPerfil] = useState(false);
+
+  const [modalPermissao, setModalPermissao] = useState(false);
+  const [modalPermissaoEditar, setModalPermissaoEditar] = useState(false);
   const [modalNovoColaborador, setModalNovoColaborador] = useState(false);
   const [modalEditarColaborador, setModalEditarColaborador] = useState(false);
   const [modalRemoverColaborador, setModalRemoverColaborador] = useState(false);
 
-  const [isAdmin, setModalIsAdmin] = useState(false);
-  const [nomePerfil, setNomePerfil] = useState('');
-  const [horaEntrada1, setModalHoraEntrada1] = useState('');
-  const [horaEntrada2, setModalHoraEntrada2] = useState('');
-  const [horaSaida1, setModalHoraSaida1] = useState('');
-  const [horaSaida2, setModalHoraSaida2] = useState('');
+  const [permissao, setPermissao] = useState(valoresIniciais);
+  const [permissaoLista, setPermissaoLista] = useState([]);
 
-  let refE1 = useRef();
-  let refE2 = useRef();
-  let refS1 = useRef();
-  let refS2 = useRef();
-
-  function savarPerfil(){
-
+  async function editarPermissao() {
+    try {
+      await axios
+        .get(`http://tbiot.hopto.org:82/api/Permissaos`)
+        .then(response => {
+          setPermissaoLista(response.data);
+          setModalPermissaoEditar(true);
+        })
+        .catch();
+    } catch (e) {
+      console.log(e);
+    }
   }
-
-
-
-
-
-
-  const toggleSwitch = () => setModalIsAdmin(previousState => !previousState);
 
   return (
     <View style={{flex: 1}}>
@@ -55,7 +62,7 @@ export default function Gestao({navigation}) {
       </View>
       <View style={{flex: 1.5, justifyContent: 'space-around'}}>
         <View>
-          <TouchableOpacity onPress={() => setModalPerfil(!modalPerfil)}>
+          <TouchableOpacity onPress={() => setModalPermissao(false)}>
             <View style={styles.cardView}>
               <View style={styles.ButtonStyle}>
                 <Icon
@@ -63,13 +70,13 @@ export default function Gestao({navigation}) {
                   color={'black'}
                   size={moderateScale(30)}
                 />
-                <Text style={styles.cardText}>Novo Perfil de Horário</Text>
+                <Text style={styles.cardText}>Novo Permissao de Horário</Text>
               </View>
             </View>
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity onPress={() => setModalPerfil(!modalPerfil)}>
+          <TouchableOpacity onPress={() => editarPermissao()}>
             <View style={styles.cardView}>
               <View style={styles.ButtonStyle}>
                 <Icon
@@ -77,7 +84,7 @@ export default function Gestao({navigation}) {
                   color={'black'}
                   size={moderateScale(30)}
                 />
-                <Text style={styles.cardText}>Editar Perfil de Horário</Text>
+                <Text style={styles.cardText}>Editar Permissao de Horário</Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -125,155 +132,21 @@ export default function Gestao({navigation}) {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{flex: 0.2}}></View>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalPerfil}
-        onRequestClose={() => {
-          setModalPerfil(!modalPerfil);
-        }}>
-        <View style={{flex: 1, padding: moderateScale(25)}}>
-          <View style={styles.modalStyle}>
-            <View
-              style={{
-                flex: 0.3,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text style={{color: 'black', fontSize: moderateScale(20)}}>
-                Cadastro de Horário
-              </Text>
-            </View>
-            <View
-              style={{
-                flex: 2,
-                paddingLeft: scale(30),
-                justifyContent: 'space-around',
-              }}>
-              <Text style={{color: 'black', fontSize: scale(15)}}>
-                Nome do Perfil
-              </Text>
-              <TextInput
-                style={styles.input}
-                onChangeText={setNomePerfil}
-                value={nomePerfil}
-                placeholder="Nome do Perfil"
-                onSubmitEditing={() => null}
-              />
-              <Text style={{color: 'black', fontSize: scale(15)}}>
-                Entrada 1
-              </Text>
-              <TextInputMask
-                type={'datetime'}
-                options={{
-                  format: 'HH:mm',
-                }}
-                value={horaEntrada1}
-                onChangeText={text => {
-                  setModalHoraEntrada1(text);
-                }}
-                style={styles.input}
-                ref={ref => (refE1 = ref)}
-                returnKeyType={'next'}
-                placeholder={'Hora entrada 1'}
-                onSubmitEditing={() => refS1.current?.focus()}
-              />
-              <Text style={{color: 'black', fontSize: scale(15)}}>Saida 1</Text>
-              <TextInputMask
-                type={'datetime'}
-                options={{
-                  format: 'HH:mm',
-                }}
-                value={horaSaida1}
-                onChangeText={text => {
-                  setModalHoraSaida1(text);
-                }}
-                style={styles.input}
-                ref={ref => (refS1 = ref)}
-                returnKeyType={'next'}
-                placeholder={'Hora Saida 1'}
-                onSubmitEditing={() => refE2.current?.focus()}
-              />
-              <Text style={{color: 'black', fontSize: scale(15)}}>
-                Entrada 2
-              </Text>
-              <TextInputMask
-                type={'datetime'}
-                options={{
-                  format: 'HH:mm',
-                }}
-                value={horaEntrada2}
-                onChangeText={text => {
-                  setModalHoraEntrada2(text);
-                }}
-                style={styles.input}
-                ref={ref => (refE2 = ref)}
-                returnKeyType={'next'}
-                placeholder={'Hora entrada 2'}
-                onSubmitEditing={() => refS2.current?.focus()}
-              />
-              <Text style={{color: 'black', fontSize: scale(15)}}>Saida 2</Text>
-              <TextInputMask
-                type={'datetime'}
-                options={{
-                  format: 'HH:mm',
-                }}
-                value={horaSaida2}
-                onChangeText={text => {
-                  setModalHoraSaida2(text);
-                }}
-                style={styles.input}
-                ref={ref => (refS2 = ref)}
-                placeholder={'Hora Saida 2'}
-                onSubmitEditing={() => null}
-              />
-            </View>
-            <View
-              style={{
-                flex: 0.1,
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text>Perfil de Admin: </Text>
-              <Switch
-                trackColor={{false: '#767577', true: '#767577'}}
-                thumbColor={isAdmin ? '#58FA58' : '#f4f3f4'}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={toggleSwitch}
-                value={isAdmin}
-              />
-            </View>
-            <View
-              style={{
-                flex: 0.5,
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                alignItems: 'center',
-              }}>
-              <TouchableOpacity onPress={() => setModalPerfil(false)}>
-                <View>
-                  <Icon
-                    color={'black'}
-                    name="close-octagon-outline"
-                    size={moderateScale(70)}
-                  />
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => null}>
-                <View>
-                  <Icon
-                    color={'black'}
-                    name="content-save-settings-outline"
-                    size={moderateScale(70)}
-                  />
-                </View>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      </Modal>
+      <View style={{flex: 0.2}}>
+        <ModalPermissao
+          modalPermissao={modalPermissao}
+          setModalPermissao={setModalPermissao}
+          permissao={permissao}
+        />
+        <ModalPermissaoEditar
+          permissaoLista={permissaoLista}
+          modalPermissaoEditar={modalPermissaoEditar}
+          setModalPermissaoEditar={setModalPermissaoEditar}
+          setPermissao={setPermissao}
+          //setModalPermissao={setModalPermissao}
+        />
+        
+      </View>
     </View>
   );
 }
