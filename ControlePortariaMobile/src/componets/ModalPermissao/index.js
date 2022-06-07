@@ -25,8 +25,8 @@ const valoresIniciais = {
 
 export default function ModalPermissao(props) {
   const {
-    modalPerfil,
-    setModalPerfil = () => false,
+    modalPerfil = false,
+    setModalPerfil = () => null,
     permissao = valoresIniciais,
   } = props;
   const [isLoading, setIsLoading] = useState(false);

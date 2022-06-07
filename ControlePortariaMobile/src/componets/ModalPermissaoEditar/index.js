@@ -10,20 +10,18 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
-
+import ModalPermissao from '../ModalPermissao';
 export default function ModalPermissaoEditar(props) {
   const {
     permissaoLista,
-    modalPermissaoEditar,
+    modalPermissaoEditar = false,
     setModalPermissaoEditar = () => null,
     setPermissao = () => null,
-    //setModalPermissao = () => null,
   } = props;
 
   function permissaoSelecionado(item){
     setPermissao(item);
     setModalPermissaoEditar(false);
-    //setModalPermissao(true);
   }
 
   return (

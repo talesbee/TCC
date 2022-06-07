@@ -51,6 +51,13 @@ export default function Gestao({navigation}) {
     }
   }
 
+  useEffect(()=>{
+    if(permissao.Entrada1!=''){
+      setModalPermissao(true);
+    }
+  },[permissao]);
+
+
   return (
     <View style={{flex: 1}}>
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -62,7 +69,7 @@ export default function Gestao({navigation}) {
       </View>
       <View style={{flex: 1.5, justifyContent: 'space-around'}}>
         <View>
-          <TouchableOpacity onPress={() => setModalPermissao(false)}>
+          <TouchableOpacity onPress={() => setModalPermissao(true)}>
             <View style={styles.cardView}>
               <View style={styles.ButtonStyle}>
                 <Icon
@@ -70,7 +77,7 @@ export default function Gestao({navigation}) {
                   color={'black'}
                   size={moderateScale(30)}
                 />
-                <Text style={styles.cardText}>Novo Permissao de Horário</Text>
+                <Text style={styles.cardText}>Nova Permissâo</Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -84,7 +91,7 @@ export default function Gestao({navigation}) {
                   color={'black'}
                   size={moderateScale(30)}
                 />
-                <Text style={styles.cardText}>Editar Permissao de Horário</Text>
+                <Text style={styles.cardText}>Editar Permissão</Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -143,7 +150,7 @@ export default function Gestao({navigation}) {
           modalPermissaoEditar={modalPermissaoEditar}
           setModalPermissaoEditar={setModalPermissaoEditar}
           setPermissao={setPermissao}
-          //setModalPermissao={setModalPermissao}
+          setModalPermissao={setModalPermissao}
         />
         
       </View>
