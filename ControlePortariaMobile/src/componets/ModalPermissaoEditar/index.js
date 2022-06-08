@@ -11,7 +11,12 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import ModalPermissao from '../ModalPermissao';
-export default function ModalPermissaoEditar(props) {
+import {connect} from 'react-redux';
+import * as permissaoActions from '../../store/actions/permissao';
+import {useNavigation} from '@react-navigation/native';
+
+function ModalPermissaoEditar(props) {
+  const navigation = useNavigation();
   const {
     permissaoLista,
     modalPermissaoEditar = false,
@@ -19,9 +24,12 @@ export default function ModalPermissaoEditar(props) {
     setPermissao = () => null,
   } = props;
 
-  function permissaoSelecionado(item){
-    setPermissao(item);
+  function permissaoSelecionado(item, index) {
+    item.atualizar = true;
+    item.id = index;
+    props.permissaoUp(item);
     setModalPermissaoEditar(false);
+    navigation.navigate('Permissao');
   }
 
   return (
@@ -50,7 +58,8 @@ export default function ModalPermissaoEditar(props) {
                 data={permissaoLista}
                 renderItem={({item, index}) => (
                   <View style={{paddingBottom: verticalScale(15)}}>
-                    <TouchableOpacity onPress={() => permissaoSelecionado(item)}>
+                    <TouchableOpacity
+                      onPress={() => permissaoSelecionado(item, index)}>
                       <View style={styles.cardView}>
                         <View style={styles.ButtonStyle}>
                           <Icon
@@ -83,6 +92,8 @@ export default function ModalPermissaoEditar(props) {
     </View>
   );
 }
+export default connect(null, permissaoActions)(ModalPermissaoEditar);
+
 const styles = StyleSheet.create({
   ButtonStyle: {
     padding: scale(10),

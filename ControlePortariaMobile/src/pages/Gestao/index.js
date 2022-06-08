@@ -37,26 +37,6 @@ export default function Gestao({navigation}) {
   const [permissao, setPermissao] = useState(valoresIniciais);
   const [permissaoLista, setPermissaoLista] = useState([]);
 
-  async function editarPermissao() {
-    try {
-      await axios
-        .get(`http://tbiot.hopto.org:82/api/Permissaos`)
-        .then(response => {
-          setPermissaoLista(response.data);
-          setModalPermissaoEditar(true);
-        })
-        .catch();
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  useEffect(()=>{
-    if(permissao.Entrada1!=''){
-      setModalPermissao(true);
-    }
-  },[permissao]);
-
 
   return (
     <View style={{flex: 1}}>
@@ -67,9 +47,9 @@ export default function Gestao({navigation}) {
           color={'black'}
         />
       </View>
-      <View style={{flex: 1.5, justifyContent: 'space-around'}}>
+      <View style={{flex: 1, justifyContent: 'space-around'}}>
         <View>
-          <TouchableOpacity onPress={() => setModalPermissao(true)}>
+          <TouchableOpacity onPress={() =>  navigation.navigate("Permissao")}>
             <View style={styles.cardView}>
               <View style={styles.ButtonStyle}>
                 <Icon
@@ -82,8 +62,8 @@ export default function Gestao({navigation}) {
             </View>
           </TouchableOpacity>
         </View>
-        <View>
-          <TouchableOpacity onPress={() => editarPermissao()}>
+        {/* <View>
+          <TouchableOpacity onPress={() =>editarPermissao()}>
             <View style={styles.cardView}>
               <View style={styles.ButtonStyle}>
                 <Icon
@@ -95,9 +75,9 @@ export default function Gestao({navigation}) {
               </View>
             </View>
           </TouchableOpacity>
-        </View>
+        </View> */}
         <View>
-          <TouchableOpacity onPress={() => null}>
+          <TouchableOpacity onPress={() => navigation.navigate("Colaborador")}>
             <View style={styles.cardView}>
               <View style={styles.ButtonStyle}>
                 <Icon
@@ -110,7 +90,7 @@ export default function Gestao({navigation}) {
             </View>
           </TouchableOpacity>
         </View>
-        <View>
+        {/* <View>
           <TouchableOpacity onPress={() => null}>
             <View style={styles.cardView}>
               <View style={styles.ButtonStyle}>
@@ -123,8 +103,8 @@ export default function Gestao({navigation}) {
               </View>
             </View>
           </TouchableOpacity>
-        </View>
-        <View>
+        </View> */}
+        {/* <View>
           <TouchableOpacity onPress={() => null}>
             <View style={styles.cardView}>
               <View style={styles.ButtonStyle}>
@@ -137,14 +117,9 @@ export default function Gestao({navigation}) {
               </View>
             </View>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
-      <View style={{flex: 0.2}}>
-        <ModalPermissao
-          modalPermissao={modalPermissao}
-          setModalPermissao={setModalPermissao}
-          permissao={permissao}
-        />
+      <View style={{flex: 1}}>
         <ModalPermissaoEditar
           permissaoLista={permissaoLista}
           modalPermissaoEditar={modalPermissaoEditar}
