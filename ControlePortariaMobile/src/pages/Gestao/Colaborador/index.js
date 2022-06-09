@@ -17,6 +17,7 @@ import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import {connect} from 'react-redux';
 import * as permissaoActions from '../../../store/actions/permissao';
 import RNPickerSelect from 'react-native-picker-select';
+import {useNavigation} from '@react-navigation/native';
 
 const valoresIniciais = {
   nome: '',
@@ -32,7 +33,9 @@ const permissao = {
   value: 0,
 };
 
-function ColaboradorScrean(navigation) {
+function ColaboradorScrean() {
+  const navigation = useNavigation();
+
   const [isLoading, setIsLoading] = useState(false);
   const [nome, setNome] = useState(valoresIniciais.nome);
   const [telefone, setTelefone] = useState(valoresIniciais.telefone);
@@ -44,6 +47,11 @@ function ColaboradorScrean(navigation) {
   const [passwordMobile, setPasswordMobile] = useState(
     valoresIniciais.passwordMobile,
   );
+
+  useEffect(() => {
+    console.log(permissaoSelected);
+  }, [permissaoSelected]);
+
   const [permissao, setPermissao] = useState();
 
   function limparPerfil() {
@@ -96,10 +104,9 @@ function ColaboradorScrean(navigation) {
         codTag: codTag,
         userMobile: userMobile,
         passwordMobile: passwordMobile,
-        permissao: permissaoSelected.value,
+        permissao: permissaoSelected,
       };
       try {
-        setIsLoading(true);
         await axios
           .post(
             `http://tbiot.hopto.org:82/api/Interacao/PostColaborador`,
@@ -113,7 +120,6 @@ function ColaboradorScrean(navigation) {
             }
           })
           .catch();
-        setIsLoading(false);
       } catch (e) {
         console.log(e);
       }
