@@ -20,6 +20,18 @@ export function getDate(dataCompleta) {
   return date; //Mes, dia e ano
 }
 
+export function getHoras(dataCompleta){
+  let hora = dataCompleta.getHours();
+  if (hora < 10) hora = '0' + hora.toString();
+  let minuto = dataCompleta.getMinutes();
+  if (minuto < 10) minuto = '0' + minuto.toString();
+  let segundos = dataCompleta.getSeconds();
+  if (segundos < 10) segundos = '0' + segundos.toString();
+  let horas = `${hora}:${minuto}:${segundos}`;
+  return horas;
+}
+
+
 export function compararDatas(diaComparar, hoje = getActualDate()) {
   let data1 = diaComparar.split('/');
   let data2 = hoje.split('/');

@@ -20,12 +20,9 @@ import {connect} from 'react-redux';
 import * as userActions from '../../store/actions/user';
 
 const initialUser = {
-  UsuarioID: null,
-  PessoaID: null,
-  Email: null,
-  Nome: null,
-  Cpf: null,
-  data: null,
+  nome: null,
+  idColaborador: null,
+  admin: false,
   isAutenticated: false,
 };
 
@@ -40,64 +37,34 @@ function Login(props) {
 
   useEffect(() => {
     setIsLoading(false);
-    if (__DEV__) {
-      onChangeUser('03606557183');
-      onChangeUserPass('arlequina');
-    }
+    navigation.closeDrawer();
   }, []);
 
-  // const BuscarDadosLogin = async () => {
-  //   const sysKey = '4AC8E05199124D208C3E886BD51D9624';
-  //   try {
-  //     setIsLoading(true);
-  //     await axios
-  //       .get(
-  //         `https://hwcf.crea-mt.org.br/Autenticacao/UsuarioService.svc/autenticar/json?sysKey=${sysKey}&cpf=${user}&senha=${userPass}`,
-  //       )
-  //       .then(response => {
-  //         if (response.data.EhValido) {
-  //           setUserData({
-  //             UsuarioID: response.data.Usuario.UsuarioID,
-  //             PessoaID: response.data.Usuario.PessoaID,
-  //             Email: response.data.Usuario.Email,
-  //             Nome: response.data.Usuario.Nome,
-  //             Cpf: response.data.Usuario.Cpf,
-  //             isAutenticated: response.data.EhValido,
-  //             data: getActualDate(),
-  //           });
-  //         } else {
-  //           Alert.alert('Erro no Login', response.data.Mensagem);
-  //         }
-  //       })
-  //       .catch();
-  //     setIsLoading(false);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (userData.UsuarioID) {
-  //     props.login(userData);
-  //     if (!inserirUsuario(userData)) {
-  //       //console.log('Erro Realm!');
-  //     } else {
-  //       //console.log('Registrado!');
-  //     }
-  //   }
-  // }, [userData]);
-
-  // const autenticacao = () => {
-  //   console.log(isDateSave);
-  //   if (!isDateSave) {
-  //     const cpfIsValid = cpfField.isValid();
-  //     if (cpfIsValid) {
-  //       BuscarDadosLogin();
-  //     } else {
-  //       Alert.alert('Erro no Login', 'Prencha todos os campos corretamente!');
-  //     }
-  //   }
-  // };
+  const BuscarDadosLogin = async () => {
+    try {
+      setIsLoading(true);
+      await axios
+        .get(
+          `http://tbiot.hopto.org:82/api/Interacao/GetLogin?user=${user}&pass=${userPass}`,
+        )
+        .then(response => {
+          if(response.data.sucesso){
+            userData.admin = response.data.data.admin;
+            userData.idColaborador = response.data.data.idColaborador;
+            userData.isAutenticated = true;
+            userData.nome = response.data.data.nome;
+            props.login(userData);
+            setUserData(userData);
+          }else{
+            Alert.alert("Erro Login","Usuário ou senha inválidos!")
+          }
+        })
+        .catch();
+      setIsLoading(false);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <View>
@@ -119,12 +86,11 @@ function Login(props) {
               <Text style={{color: 'black', fontSize: scale(18)}}>User</Text>
               <TextInput
                 style={styles.input}
-                onChangeText={onChangeUserPass}
+                onChangeText={onChangeUser}
                 value={user}
                 placeholder="Digite seu Usuário"
-                ref={passRef}
-                autoComplete={'password'}
-                onSubmitEditing={() => autenticacao()}
+                autoComplete={'username'}
+                onSubmitEditing={()=> passRef.current.focus()}
               />
               <Text style={{color: 'black', fontSize: scale(18)}}>Pass</Text>
               <TextInput
@@ -135,12 +101,12 @@ function Login(props) {
                 ref={passRef}
                 secureTextEntry
                 autoComplete={'password'}
-                onSubmitEditing={() => autenticacao()}
+                onSubmitEditing={()=> BuscarDadosLogin()}
               />
             </View>
             <View style={{alignItems: 'center'}}>
               <View style={{width: '50%', paddingTop: '5%'}}>
-                <TouchableOpacity onPress={() => autenticacao()}>
+                <TouchableOpacity onPress={() => BuscarDadosLogin()}>
                   <View
                     style={{
                       alignItems: 'center',
