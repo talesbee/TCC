@@ -155,6 +155,7 @@ function ColaboradorScrean() {
               </Text>
               <TextInput
                 style={styles.input}
+                placeholderTextColor="gray"
                 onChangeText={setNome}
                 value={nome}
                 placeholder="Nome do Colaborador"
@@ -177,6 +178,7 @@ function ColaboradorScrean() {
               </Text>
               <TextInput
                 style={styles.input}
+                placeholderTextColor="gray"
                 onChangeText={setTelefone}
                 value={telefone}
                 placeholder="Telefone"
@@ -187,6 +189,7 @@ function ColaboradorScrean() {
               </Text>
               <TextInput
                 style={styles.input}
+                placeholderTextColor="gray"
                 onChangeText={setEndereco}
                 value={endereco}
                 placeholder="Endereço"
@@ -197,6 +200,7 @@ function ColaboradorScrean() {
               </Text>
               <TextInput
                 style={styles.input}
+                placeholderTextColor="gray"
                 onChangeText={setCodTag}
                 value={codTag}
                 placeholder="Codigo Tag"
@@ -207,6 +211,7 @@ function ColaboradorScrean() {
               </Text>
               <TextInput
                 style={styles.input}
+                placeholderTextColor="gray"
                 onChangeText={setUserMobile}
                 value={userMobile}
                 placeholder="UsuarioMobile"
@@ -217,6 +222,7 @@ function ColaboradorScrean() {
               </Text>
               <TextInput
                 style={styles.input}
+                placeholderTextColor="gray"
                 onChangeText={setPasswordMobile}
                 value={passwordMobile}
                 placeholder="SenhaMobile"
