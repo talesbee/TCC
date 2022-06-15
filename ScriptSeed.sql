@@ -27,3 +27,10 @@ Colaboradores
 (IdPessoa, IdPermissao, IdIdentificador, IdAcessoMobile)
 values
 (1,1,1,1);
+
+select * from Pessoas;
+select * from AcessoMobile;
+select * from Colaboradores;
+select * from Permissao;
+select * from RegistroHoras;
+select * from Identificador;

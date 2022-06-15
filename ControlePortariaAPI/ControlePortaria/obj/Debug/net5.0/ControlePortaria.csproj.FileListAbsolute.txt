@@ -252,7 +252,6 @@ E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\bin\Debug\net5.0\runtime
 E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Debug\net5.0\ControlePortaria.csproj.AssemblyReference.cache
 E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Debug\net5.0\ControlePortaria.GeneratedMSBuildEditorConfig.editorconfig
 E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Debug\net5.0\ControlePortaria.AssemblyInfoInputs.cache
 E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Debug\net5.0\ControlePortaria.AssemblyInfo.cs
@@ -268,3 +267,4 @@ E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Debug\net5.0\Control
 E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Debug\net5.0\ref\ControlePortaria.dll
 E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Debug\net5.0\ControlePortaria.pdb
 E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Debug\net5.0\ControlePortaria.genruntimeconfig.cache
+E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\obj\Debug\net5.0\ControlePortaria.csproj.AssemblyReference.cache

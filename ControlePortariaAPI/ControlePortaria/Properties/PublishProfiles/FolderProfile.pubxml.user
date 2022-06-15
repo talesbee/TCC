@@ -5,6 +5,6 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>E:\TCC\Projeto\TCC\ControlePortariaAPI\ControlePortaria\bin\Release\net5.0\publish\</_PublishTargetUrl>
-    <History>True|2022-06-05T16:06:33.5352892Z;</History>
+    <History>True|2022-06-06T12:22:13.9328075Z;True|2022-06-05T12:06:33.5352892-04:00;</History>
   </PropertyGroup>
 </Project>
