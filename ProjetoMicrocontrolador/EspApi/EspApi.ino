@@ -24,7 +24,7 @@ void loop() {
     hold(500);
     if ((WiFiMulti.run() == WL_CONNECTED)) {
       HTTPClient http;
-      String url = "https://tbiot.hopto.org:82/api/Interacao/";
+      String url = "https://tbiot.hopto.org:82/api/Interacao/GetEntrada/";
       String link = url+tag;
       if (http.begin(client, link.c_str())) {
         int httpCode = http.GET();

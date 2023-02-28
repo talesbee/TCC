@@ -57,12 +57,15 @@ function Login(props) {
             setUserData(userData);
           }else{
             Alert.alert("Erro Login","Usuário ou senha inválidos!")
+            setIsLoading(false);
           }
         })
         .catch();
       setIsLoading(false);
     } catch (e) {
       console.log(e);
+      Alert.alert("Erro Conexão API","Confirme que você está conectado!");
+      setIsLoading(false);
     }
   };
 
@@ -78,12 +81,12 @@ function Login(props) {
           <Image
             style={{flex:1, resizeMode: 'contain'}}
             source={LogoCreaRedondo}></Image>
-          <Text style={{flex: 0.3, fontSize:moderateScale(25), color:'black', fontWeight:'bold'}}>Controle Portaria</Text>
+          <Text style={{flex: 0.3, fontSize:moderateScale(25), color:'black', fontWeight:'bold'}}>TCC Tales - Controle Portaria</Text>
         </View>
         <View style={{flex: 2}}>
           <View style={{paddingTop: '5%'}}>
             <View style={{paddingLeft: '10%'}}>
-              <Text style={{color: 'black', fontSize: scale(18)}}>User</Text>
+              <Text style={{color: 'black', fontSize: scale(18)}}>Usuário</Text>
               <TextInput
                 style={styles.input}
                 onChangeText={onChangeUser}
@@ -91,8 +94,10 @@ function Login(props) {
                 placeholder="Digite seu Usuário"
                 autoComplete={'username'}
                 onSubmitEditing={()=> passRef.current.focus()}
+                placeholderTextColor='#A9A9A9'
+                
               />
-              <Text style={{color: 'black', fontSize: scale(18)}}>Pass</Text>
+              <Text style={{color: 'black', fontSize: scale(18)}}>Senha</Text>
               <TextInput
                 style={styles.input}
                 onChangeText={onChangeUserPass}
@@ -102,6 +107,7 @@ function Login(props) {
                 secureTextEntry
                 autoComplete={'password'}
                 onSubmitEditing={()=> BuscarDadosLogin()}
+                placeholderTextColor='#A9A9A9'
               />
             </View>
             <View style={{alignItems: 'center'}}>
@@ -117,7 +123,7 @@ function Login(props) {
                     {isLoading ? (
                       <ActivityIndicator size="large" color="yellow" />
                     ) : (
-                      <Text style={styles.buttonText}>Login</Text>
+                      <Text style={styles.buttonText}>Acessar</Text>
                     )}
                   </View>
                 </TouchableOpacity>

@@ -21,7 +21,7 @@ export function getDate(dataCompleta) {
 }
 
 export function getHoras(dataCompleta){
-  let hora = dataCompleta.getHours();
+  let hora = dataCompleta.getHours()+4;
   if (hora < 10) hora = '0' + hora.toString();
   let minuto = dataCompleta.getMinutes();
   if (minuto < 10) minuto = '0' + minuto.toString();

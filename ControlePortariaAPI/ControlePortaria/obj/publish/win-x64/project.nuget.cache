@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "MLH8P8gtNR6BiM+0sIsVBr8npf2wzoWAqXAp8Ysap2rd99y5LDzMzxEYfX93HQplvtRnC7yzF9n9HMzldZQQmQ==",
+  "dgSpecHash": "1W5PgHpHOzRWK4tgDRVO66a22HxC2iBwkBngMe2p1xd701rggwErcht31DK3ZFcyf1Pr6XwwZF71uTKqA3/j5Q==",
   "success": true,
   "projectFilePath": "E:\\TCC\\Projeto\\TCC\\ControlePortariaAPI\\ControlePortaria\\ControlePortaria.csproj",
   "expectedPackageFiles": [
@@ -78,10 +78,10 @@
     "C:\\Users\\Tales\\.nuget\\packages\\runtime.win.system.io.filesystem\\4.3.0\\runtime.win.system.io.filesystem.4.3.0.nupkg.sha512",
     "C:\\Users\\Tales\\.nuget\\packages\\runtime.win.system.net.primitives\\4.3.0\\runtime.win.system.net.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Tales\\.nuget\\packages\\runtime.win.system.runtime.extensions\\4.3.0\\runtime.win.system.runtime.extensions.4.3.0.nupkg.sha512",
-    "C:\\Users\\Tales\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
-    "C:\\Users\\Tales\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
-    "C:\\Users\\Tales\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
-    "C:\\Users\\Tales\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512",
+    "C:\\Users\\Tales\\.nuget\\packages\\swashbuckle.aspnetcore\\6.3.1\\swashbuckle.aspnetcore.6.3.1.nupkg.sha512",
+    "C:\\Users\\Tales\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.3.1\\swashbuckle.aspnetcore.swagger.6.3.1.nupkg.sha512",
+    "C:\\Users\\Tales\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.3.1\\swashbuckle.aspnetcore.swaggergen.6.3.1.nupkg.sha512",
+    "C:\\Users\\Tales\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.3.1\\swashbuckle.aspnetcore.swaggerui.6.3.1.nupkg.sha512",
     "C:\\Users\\Tales\\.nuget\\packages\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",
     "C:\\Users\\Tales\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\Tales\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
@@ -156,10 +156,7 @@
     "C:\\Users\\Tales\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Tales\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Tales\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\Tales\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\Tales\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\5.0.16\\microsoft.netcore.app.runtime.win-x64.5.0.16.nupkg.sha512",
-    "C:\\Users\\Tales\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\5.0.16\\microsoft.windowsdesktop.app.runtime.win-x64.5.0.16.nupkg.sha512",
-    "C:\\Users\\Tales\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\5.0.16\\microsoft.aspnetcore.app.runtime.win-x64.5.0.16.nupkg.sha512"
+    "C:\\Users\\Tales\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

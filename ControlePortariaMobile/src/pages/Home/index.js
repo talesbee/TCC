@@ -39,7 +39,7 @@ export default function Home() {
       </View>
       <View style={{flex: 1, alignItems: 'center'}}>
         <Text style={{color: 'black', fontSize: moderateScale(25)}}>
-          Controle Portaria
+          TCC Tales - Controle Portaria
         </Text>
         <Text
           style={{

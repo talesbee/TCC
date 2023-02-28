@@ -1,20 +1,20 @@
 insert into 
-Pessoas 
+Pessoas
 (Nome, Telefone, Endereco) 
 values 
 ('Tales','9856548','Rua 4, n 1');
 
 insert into 
 Permissao 
-(Adm, Entrada1, Saida1,Entrada2,Saida2) 
+(Adm, Entrada1, Saida1,Entrada2,Saida2, NomePerfil) 
 values 
-('TRUE','08:00','11:00', '14:00', '18:00');
+('TRUE','08:00','11:00', '14:00', '18:00', 'Adm');
 
 insert into 
 Identificador
 (CodTag)
 values
-('123');
+('2c6a7117');
 
 insert into 
 AcessoMobile
