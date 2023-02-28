@@ -115,6 +115,7 @@ function PermissaoScrean(props) {
               </Text>
               <TextInput
                 style={styles.input}
+                placeholderTextColor="gray"
                 onChangeText={setNomePerfil}
                 value={nomePerfil}
                 placeholder="Nome do Perfil"

@@ -89,6 +89,7 @@ function Login(props) {
               <Text style={{color: 'black', fontSize: scale(18)}}>Usuário</Text>
               <TextInput
                 style={styles.input}
+                placeholderTextColor="gray"
                 onChangeText={onChangeUser}
                 value={user}
                 placeholder="Digite seu Usuário"
@@ -100,6 +101,7 @@ function Login(props) {
               <Text style={{color: 'black', fontSize: scale(18)}}>Senha</Text>
               <TextInput
                 style={styles.input}
+                placeholderTextColor="gray"
                 onChangeText={onChangeUserPass}
                 value={userPass}
                 placeholder="Digite sua Senha"
@@ -144,6 +146,7 @@ export default connect(mapStateToProps, userActions)(Login);
 
 const styles = StyleSheet.create({
   input: {
+    color: 'black',
     height: verticalScale(35),
     width: '80%',
     margin: scale(12),
