@@ -110,7 +110,9 @@ namespace ControlePortaria.Controllers
             acesso.UserMobile = colab.UserMobile;
             acesso.PasswordMobile = colab.PasswordMobile;
             _context.AcessoMobile.Add(acesso);
-            var lt = _context.AcessoMobile.ToListAsync().Result.LastOrDefault().Id+1;
+            await _context.SaveChangesAsync();
+
+            var lt = _context.AcessoMobile.First(a => a == acesso).Id;
             colaborador.IdAcessoMobile = lt;
 
             Pessoa pessoa = new();
@@ -118,12 +120,19 @@ namespace ControlePortaria.Controllers
             pessoa.Telefone = colab.Telefone;
             pessoa.Endereco = colab.Endereco;
             _context.Pessoas.Add(pessoa);
-            colaborador.IdPessoa = _context.Pessoas.ToListAsync().Result.LastOrDefault().Id+1;
+            await _context.SaveChangesAsync();
+
+            lt = _context.Pessoas.First(p => p == pessoa).Id;
+
+            colaborador.IdPessoa = (int)lt;
 
             Identificador tag = new();
             tag.CodTag = colab.CodTag;
             _context.Identificador.Add(tag);
-            colaborador.IdIdentificador = _context.Identificador.ToListAsync().Result.LastOrDefault().Id + 1; ;
+            await _context.SaveChangesAsync();
+
+            lt = _context.Identificador.First(i => i == tag).Id;
+            colaborador.IdIdentificador =  lt;
 
             _context.Colaboradores.Add(colaborador);
             await _context.SaveChangesAsync();

@@ -172,6 +172,7 @@ function ColaboradorScrean() {
                   setPermissaoSelected(value);
                 }}
                 value={permissaoSelected}
+                
               />
               <Text style={{color: 'black', fontSize: scale(15)}}>
                 Telefone
@@ -293,6 +294,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 20,
   },
   input: {
+    color: 'black',
     height: verticalScale(35),
     width: '80%',
     margin: scale(12),

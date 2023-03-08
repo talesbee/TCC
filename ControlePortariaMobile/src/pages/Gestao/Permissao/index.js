@@ -138,6 +138,7 @@ function PermissaoScrean(props) {
                 returnKeyType={'next'}
                 placeholder={'Hora entrada 1'}
                 onSubmitEditing={() => refS1.current?.focus()}
+                placeholderTextColor="gray"
               />
               <Text style={{color: 'black', fontSize: scale(15)}}>Saida 1</Text>
               <TextInputMask
@@ -154,6 +155,7 @@ function PermissaoScrean(props) {
                 returnKeyType={'next'}
                 placeholder={'Hora Saida 1'}
                 onSubmitEditing={() => refE2.current?.focus()}
+                placeholderTextColor="gray"
               />
               <Text style={{color: 'black', fontSize: scale(15)}}>
                 Entrada 2
@@ -172,7 +174,7 @@ function PermissaoScrean(props) {
                 returnKeyType={'next'}
                 placeholder={'Hora entrada 2'}
                 onSubmitEditing={() => refS2.current?.focus()}
-              />
+                placeholderTextColor="gray"              />
               <Text style={{color: 'black', fontSize: scale(15)}}>Saida 2</Text>
               <TextInputMask
                 type={'datetime'}
@@ -187,6 +189,7 @@ function PermissaoScrean(props) {
                 ref={ref => (refS2 = ref)}
                 placeholder={'Hora Saida 2'}
                 onSubmitEditing={() => null}
+                placeholderTextColor="gray"
               />
             </View>
             <View
@@ -196,7 +199,7 @@ function PermissaoScrean(props) {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
-              <Text>Perfil de Admin: </Text>
+              <Text style={{color: 'black'}}>Perfil é de Admin: </Text>
               <Switch
                 trackColor={{false: '#767577', true: '#767577'}}
                 thumbColor={isAdmin ? '#58FA58' : '#f4f3f4'}
@@ -269,6 +272,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 20,
   },
   input: {
+    color: 'black',
     height: verticalScale(35),
     width: '80%',
     margin: scale(12),

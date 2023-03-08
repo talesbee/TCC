@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, FlatList, StyleSheet} from 'react-native';
-import {Header} from '../../componets';
-import {useSelector} from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { Header } from '../../componets';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
-import {moderateScale, verticalScale, scale} from 'react-native-size-matters';
-import {getHoras, getDate} from '../../utils';
+import { moderateScale, verticalScale, scale } from 'react-native-size-matters';
+import { getHoras, getDate } from '../../utils';
 
-export default function Horas({navigation}) {
+export default function Horas({ navigation }) {
   const user = useSelector(state => state.user);
   const [listaHoras, setListaHoras] = useState([]);
 
@@ -32,24 +32,27 @@ export default function Horas({navigation}) {
   }
 
   return (
-    <View style={{flex: 1}}>
-      <View style={{flex: 0.5, alignItems: 'center', justifyContent:'center'}}>
-        <Text style={{fontSize: moderateScale(25), color: 'black'}}>
+    <View style={{ flex: 1 }}>
+      <View style={{ flex: 0.5, alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={{ fontSize: moderateScale(25), color: 'black' }}>
           Suas Horas Registradas
         </Text>
-        <Text style={{fontSize: moderateScale(20), color: 'black'}}>
+        <Text style={{ fontSize: moderateScale(20), color: 'black' }}>
           {user.nome}
         </Text>
+        <TouchableOpacity onPress={() => buscarHoras()}>
+          <Text style={{ fontSize: moderateScale(15), color: 'red' }}>Buscar Horas</Text>
+        </TouchableOpacity>
       </View>
-      <View style={{flex: 2}}>
+      <View style={{ flex: 2 }}>
         <FlatList
           data={listaHoras}
-          renderItem={({item, index}) => (
+          renderItem={({ item, index }) => (
             <View
-              style={{paddingBottom: verticalScale(15), paddingLeft:scale(25), paddingRight:scale(25)}}>
+              style={{ paddingBottom: verticalScale(15), paddingLeft: scale(25), paddingRight: scale(25) }}>
               <View style={styles.ButtonStyle}>
-                <Text style={{color:'black', fontSize: moderateScale(15)}}>Dia: {getDate(new Date(item.data))}</Text>
-                <Text style={{color:'black', fontSize: moderateScale(15)}}>Hora: {getHoras(new Date(item.data))}</Text>
+                <Text style={{ color: 'black', fontSize: moderateScale(15) }}>Dia: {getDate(new Date(item.data))}</Text>
+                <Text style={{ color: 'black', fontSize: moderateScale(15) }}>Hora: {getHoras(new Date(item.data))}</Text>
               </View>
             </View>
           )}
@@ -60,7 +63,7 @@ export default function Horas({navigation}) {
 }
 const styles = StyleSheet.create({
   ButtonStyle: {
-    flexDirection:'row',
+    flexDirection: 'row',
     justifyContent: 'space-around',
     padding: scale(10),
     paddingLeft: scale(15),

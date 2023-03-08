@@ -61,6 +61,7 @@ function Login(props) {
           }
         })
         .catch();
+        await axios.Cancel;
       setIsLoading(false);
     } catch (e) {
       console.log(e);
@@ -95,7 +96,6 @@ function Login(props) {
                 placeholder="Digite seu Usuário"
                 autoComplete={'username'}
                 onSubmitEditing={()=> passRef.current.focus()}
-                placeholderTextColor='#A9A9A9'
                 
               />
               <Text style={{color: 'black', fontSize: scale(18)}}>Senha</Text>
@@ -109,7 +109,6 @@ function Login(props) {
                 secureTextEntry
                 autoComplete={'password'}
                 onSubmitEditing={()=> BuscarDadosLogin()}
-                placeholderTextColor='#A9A9A9'
               />
             </View>
             <View style={{alignItems: 'center'}}>
