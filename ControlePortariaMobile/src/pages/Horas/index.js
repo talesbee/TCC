@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { Header } from '../../componets';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -22,7 +22,8 @@ export default function Horas({ navigation }) {
         )
         .then(response => {
           if (response.data.sucesso) {
-            setListaHoras(response.data.data);
+
+            setListaHoras(response.data.data.slice(0).reverse());
           }
         })
         .catch();

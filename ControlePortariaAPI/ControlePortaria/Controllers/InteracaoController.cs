@@ -124,7 +124,7 @@ namespace ControlePortaria.Controllers
 
             lt = _context.Pessoas.First(p => p == pessoa).Id;
 
-            colaborador.IdPessoa = (int)lt;
+            colaborador.IdPessoa = lt;
 
             Identificador tag = new();
             tag.CodTag = colab.CodTag;
